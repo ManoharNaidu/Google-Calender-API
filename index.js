@@ -41,7 +41,6 @@ app.get("/auth/redirect", async (req, res) => {
       redirect_uri: REDIRECT_URL,
     });
     oauth2Client.setCredentials(tokens);
-    // window.alert("Authentication successful! Click Ok to continue.");
 
     res.redirect(`${SERVER_URL}:${PORT}/create-event`);
   } catch (error) {
@@ -55,10 +54,6 @@ const calendar = google.calendar({
   version: "v3",
   auth: oauth2Client,
 });
-
-// const startDate = new Date();
-
-// console.log(startDate);
 
 const event = {
   summary: "Testing Calender API",
@@ -92,7 +87,7 @@ app.get("/create-event", async (req, res) => {
       sendUpdates: "all",
       resource: event,
     });
-    // window.alert("Event created successfully");
+
     res.send({
       status: 200,
       message: "Event created",
